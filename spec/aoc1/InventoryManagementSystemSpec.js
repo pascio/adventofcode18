@@ -1,4 +1,4 @@
-var Ims = require('../../2/ims');
+var Ims = require('../../2/InventoryManagementSystem');
 
 describe('InventoryManagementSystem', function() {
     it('should be able to produce a checksum', function() {
@@ -15,13 +15,40 @@ describe('InventoryManagementSystem', function() {
     });
 
     describe('checkMultiples', function() {
-        it('it should be able to find double and triple characters in strings', function() {
+        it('should be able to find double and triple characters in strings', function() {
             // Arrange
             var input = 'bababc';
             var testee = new Ims();
             var expectedResult = [true,true];
             // Act
             var result = testee.checkMultiples(input);
+            // Assert
+            expect(result).toEqual(expectedResult);
+        })
+    });
+
+    describe('findSimilarBoxes', function() {
+        it('should be able to find similar IDs', function() {
+            // Arrange
+            var input = ['abcde','fghij','klmno','pqrst','fguij','axcye','wvxyz']
+            var testee = new Ims();
+            var expectedResult = 'fgij';
+            // Act
+            var result = testee.findSimilarBoxes(input);
+            // Assert
+            expect(result).toEqual(expectedResult);
+        })
+    })
+
+    describe('compareStrings', function() {
+        it('should compare two strings and find how many characters differ', function() {
+            // Arrange
+            var input1 = 'fguij';
+            var input2 = 'fghij';
+            var testee = new Ims();
+            var expectedResult = [2];
+            // Act
+            var result = testee.compareStrings(input1, input2);
             // Assert
             expect(result).toEqual(expectedResult);
         })
